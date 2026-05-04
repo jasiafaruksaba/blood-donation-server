@@ -1,21 +1,38 @@
-import express from "express";
-import { 
-  createDonationRequest, 
-  getMyRequests, 
-  getAllRequests, 
-  updateRequestStatus, 
-  deleteRequest 
-} from "../controllers/donationController.js";
-
-import verifyToken from "../middleware/verifyToken.js";
-import verifyActive from "../middleware/verifyActive.js";
-
+const express = require('express');
 const router = express.Router();
+const {
+  createDonationRequest,
+  getMyRequests,
+  getAllRequests,
+  getRequestById,
+  updateRequestStatus,
+  updateRequest,
+  deleteRequest
+} = require('../controllers/donationController');
 
-router.post("/", verifyToken, verifyActive, createDonationRequest);
-router.get("/my/:email", verifyToken, getMyRequests);
-router.get("/", verifyToken, getAllRequests);           // Admin + Volunteer
-router.patch("/:id", verifyToken, updateRequestStatus);
-router.delete("/:id", verifyToken, deleteRequest);
+const verifyFBToken = require('../middleware/verifyFBToken');
+const verifyActive = require('../middleware/verifyActive');
+const verifyVolunteer = require('../middleware/verifyVolunteer');
 
-export default router;
+// Create donation request
+router.post('/', verifyFBToken, verifyActive, createDonationRequest);
+
+// Get my requests
+router.get('/my/:email', verifyFBToken, verifyActive, getMyRequests);
+
+// Get all requests (Admin/Volunteer/Public)
+router.get('/',  getAllRequests);
+
+// Get single request
+router.get('/:id', verifyFBToken, getRequestById);
+
+// Update status (Volunteer/Admin)
+router.patch('/:id/status', verifyFBToken, verifyVolunteer, updateRequestStatus);
+
+// Update request (Owner only)
+router.patch('/:id', verifyFBToken, verifyActive, updateRequest);
+
+// Delete request (Owner only)
+router.delete('/:id', verifyFBToken, verifyActive, deleteRequest);
+
+module.exports = router;

@@ -1,25 +1,27 @@
-import mongoose from "mongoose";
+// const express = require('express');
+// const router = express.Router();
+// const { 
+//   createUser, 
+//   getMeUser,
+//   updateOwnProfile,
+//   searchDonors,
+//   getAllUsers,
+//   updateUser 
+// } = require('../controllers/userController');
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  avatar: { type: String },
-  bloodGroup: { 
-    type: String, 
-    enum: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] 
-  },
-  district: { type: String, required: true },
-  upazila: { type: String, required: true },
-  role: { 
-    type: String, 
-    enum: ["donor", "volunteer", "admin"], 
-    default: "donor" 
-  },
-  status: { 
-    type: String, 
-    enum: ["active", "blocked"], 
-    default: "active" 
-  },
-}, { timestamps: true });
+// const verifyFBToken = require('../middleware/verifyFBToken');
+// const verifyAdmin = require('../middleware/verifyAdmin');
 
-export default mongoose.model("User", userSchema);
+// // Public
+// router.post("/", createUser);
+// router.get("/search", searchDonors);
+
+// // Protected
+// router.get("/me", verifyFBToken, getMeUser);
+// router.patch("/me", verifyFBToken, updateOwnProfile);
+
+// // Admin
+// router.get("/", verifyFBToken, verifyAdmin, getAllUsers);
+// router.patch("/:email", verifyFBToken, verifyAdmin, updateUser);
+
+// module.exports = router;  // ✅ Router export

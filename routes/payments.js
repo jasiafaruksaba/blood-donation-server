@@ -1,14 +1,20 @@
-import express from "express";
-import { 
-  getAllPayments, 
-  createPayment 
-} from "../controllers/paymentController.js";
-
-import verifyToken from "../middleware/verifyToken.js";
-
+const express = require('express');
 const router = express.Router();
+const {
+  createPayment,
+  getAllPayments,
+  handlePaymentSuccess
+} = require('../controllers/paymentController');
 
-router.get("/", verifyToken, getAllPayments);
-router.post("/", verifyToken, createPayment);
+const verifyFBToken = require('../middleware/verifyFBToken');
 
-export default router;
+// Create payment
+router.post('/', verifyFBToken, createPayment);
+
+// Get all payments
+router.get('/', verifyFBToken, getAllPayments);
+
+// Payment success webhook
+router.get('/success', handlePaymentSuccess);
+
+module.exports = router;

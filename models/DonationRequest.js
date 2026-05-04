@@ -1,24 +1,34 @@
-import mongoose from "mongoose";
+// const express = require('express');
+// const router = express.Router();
+// const { 
+//   createDonationRequest, 
+//   getMyRequests, 
+//   getAllRequests, 
+//   updateRequestStatus, 
+//   deleteRequest,
+//   getRequestById 
+// } = require('../controllers/donationController');
 
-const donationRequestSchema = new mongoose.Schema({
-  requesterName: { type: String, required: true },
-  requesterEmail: { type: String, required: true },
-  recipientName: { type: String, required: true },
-  recipientDistrict: { type: String, required: true },
-  recipientUpazila: { type: String, required: true },
-  hospital: { type: String, required: true },
-  fullAddress: { type: String, required: true },
-  bloodGroup: { type: String, required: true },
-  donationDate: { type: String, required: true },
-  donationTime: { type: String, required: true },
-  message: { type: String },
-  status: { 
-    type: String, 
-    enum: ["pending", "inprogress", "done", "canceled"], 
-    default: "pending" 
-  },
-  donorName: String,
-  donorEmail: String,
-}, { timestamps: true });
+// const verifyFBToken = require('../middleware/verifyFBToken');
+// const verifyActive = require('../middleware/verifyActive');
+// const verifyVolunteer = require('../middleware/verifyVolunteer');
 
-export default mongoose.model("DonationRequest", donationRequestSchema);
+// // Create donation request
+// router.post("/", verifyFBToken, verifyActive, createDonationRequest);  // ✅ Fixed
+
+// // Get single request
+// router.get("/:id", verifyFBToken, getRequestById);
+
+// // Get my requests
+// router.get("/my/:email", verifyFBToken, verifyActive, getMyRequests);
+
+// // Get all requests
+// router.get("/", verifyFBToken, getAllRequests);  // ✅ Fixed
+
+// // Update status
+// router.patch("/:id", verifyFBToken, verifyVolunteer, updateRequestStatus);
+
+// // Delete request
+// router.delete("/:id", verifyFBToken, verifyActive, deleteRequest);
+
+// module.exports = router;  // ✅ Export

@@ -1,10 +1,9 @@
-import mongoose from "mongoose";
+// const express = require('express');
+// const router = express.Router();
+// const { getAllPayments, createPayment } = require('../controllers/paymentController');
+// const verifyFBToken = require('../middleware/verifyFBToken');
 
-const paymentSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  amount: { type: Number, required: true },
-  paymentDate: { type: Date, default: Date.now },
-}, { timestamps: true });
+// router.get("/", verifyFBToken, getAllPayments);
+// router.post("/", verifyFBToken, createPayment);
 
-export default mongoose.model("Payment", paymentSchema);
+// module.exports = router;  // ✅ Router export
