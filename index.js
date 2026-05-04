@@ -21,7 +21,7 @@ app.use(express.json({ limit: '10mb' }));
 // Health check
 app.get('/', (req, res) => {
   res.json({ 
-    message: "🚀 Blood Donation API LIVE ",
+    message: "🚀 Blood Donation API LIVE ✅",
     timestamp: new Date().toISOString(),
     version: "1.0.0"
   });
@@ -50,7 +50,7 @@ const startServer = async () => {
       console.log(`🔗 Client URL: ${process.env.CLIENT_URL}`);
     });
   } catch (error) {
-    console.error('Failed to start server:', error);
+    console.error('❌ Failed to start server:', error);
     process.exit(1);
   }
 };

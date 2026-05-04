@@ -3,7 +3,7 @@ const { getCollections } = require('../config/db');
 const verifyVolunteer = async (req, res, next) => {
   try {
     const { userCollection } = getCollections();
-    const email = req.decoded_email;
+    const email = req.user?.email;
 
     if (!email) {
       return res.status(401).json({ message: "No email found" });

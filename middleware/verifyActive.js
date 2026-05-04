@@ -5,7 +5,7 @@ const verifyActive = async (req, res, next) => {
     const { userCollection } = getCollections();
     
     // ✅ FIXED: req.user.email ব্যবহার করুন (verifyFBToken থেকে আসে)
-    const email = req.user?.email;
+    const email = req.user?.email ;
 
     if (!email) {
       return res.status(401).json({ message: "No user email found" });

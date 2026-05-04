@@ -9,11 +9,8 @@ let db;
 
 const connectDB = async () => {
   try {
-    await client.connect({
-      serverSelectionTimeoutMS: 10000,   
-      socketTimeoutMS: 45000,
-    });
-    console.log(" REAL MongoDB Connected! 🎉");
+    await client.connect();
+    console.log("✅ REAL MongoDB Connected! 🎉");
     
     db = client.db("blood_donation");
     
@@ -25,7 +22,7 @@ const connectDB = async () => {
     
     return db;
   } catch (error) {
-    console.error(" MongoDB Connection Error:", error.message);
+    console.error("❌ MongoDB Connection Error:", error.message);
     process.exit(1);
   }
 };

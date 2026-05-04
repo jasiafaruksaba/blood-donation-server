@@ -15,7 +15,11 @@ exports.createUser = async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    let hashedPassword = "";
+
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
 
     const newUser = {
       name: name.trim(),
@@ -37,9 +41,15 @@ exports.createUser = async (req, res) => {
       success: true,
       message: "User created successfully",
       user: {
-        ...newUser,
-        _id: result.insertedId,
-        password: undefined
+        _id: result.insertedId.toString(),  // ✅ এটা add করুন
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        status: newUser.status,
+        avatar: newUser.avatar,
+        bloodGroup: newUser.bloodGroup,
+        district: newUser.district,
+        upazila: newUser.upazila
       }
     });
 
